@@ -1,6 +1,6 @@
 DOCKER := $(shell which docker)
 DOCKER_TAG := c4-plantuml
-PLANTUML_FLAGS := -tsvg
+PLANTUML_FLAGS ?= -tsvg
 
 DIAGRAMS := $(PWD)/diagrams
 OUT := out

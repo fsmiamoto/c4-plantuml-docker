@@ -1,0 +1,26 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  gen:
+    name: Generate SVG diagrams
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Generate diagrams
+        run: |
+          make gen PLANTUML_FLAGS=-tsvg
+
+      - name: Archive diagrams
+        uses: actions/upload-artifact@v2
+        with:
+          name: diagrams-svg
+          path: |
+            diagrams/out
